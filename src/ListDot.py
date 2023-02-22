@@ -7,16 +7,12 @@ class ListDot:
         self.neff = neff
         self.dimension = dimension
         self.buffer = []
+        self.euclid_count = 0
 
     def generateRandom(self):
         # Fill the buffer with randomly generated dots and sort it by the x-coordinate
         self.buffer = [Dot(self.dimension) for i in range (self.neff)]
         self.buffer.sort(key = lambda x: x.position[0])
-
-    def copyList(self, other, start):
-        # Fill the buffer with dots from other.buffer from start index to self.neff+1
-        # other.buffer is already sorted
-        self.buffer = [other.buffer[i] for i in range(start, start+self.neff)]
 
     # ================================== BRUTE FORCE ==================================
     def bruteForce(self, start, finish):
@@ -24,10 +20,12 @@ class ListDot:
         minDist = 999999
         dot1 = Dot(self.dimension)
         dot2 = Dot(self.dimension)
+        euclid_count = 0
 
         # Calculate the closest pair of dots using brutefore
         for i in range (start, finish):
             for j in range(i+1, finish+1):
+                euclid_count += 1
                 temp = self.buffer[j] - self.buffer[i]
                 if (temp < minDist):
                     minDist = temp
@@ -35,7 +33,7 @@ class ListDot:
                     dot2 = self.buffer[j]
 
         # Return the closest pair of dots and their distance
-        return dot1, dot2, minDist
+        return dot1, dot2, minDist, euclid_count
     
     # ============================== DIVIDE AND CONQUER ===============================
     def divideAndConquer(self, start, finish):
@@ -47,7 +45,8 @@ class ListDot:
         # Process the list depending on its size
         if (finish-start+1 <= 4):
             # Find the closest pair of dots using bruteforce
-            dot1, dot2, minDist = self.bruteForce(start, finish)
+            dot1, dot2, minDist, count = self.bruteForce(start, finish)
+            self.euclid_count += count
         else:
             # Define the size of current partition
             size = finish - start + 1
@@ -66,6 +65,7 @@ class ListDot:
             # TO DO for Austin
 
             # Compare the minDist between pair of dots across the midline and pair of dots from the same partition
+            # TO DO for Austin
 
         return dot1, dot2, minDist
     
