@@ -1,3 +1,6 @@
+# File          : Dot.py
+# Description   : Implement the dot object and its method
+
 import random
 import math
 
@@ -8,6 +11,7 @@ class Dot:
         self.position = [random.randint(-1000, 1000) for i in range (dimension)]
     
     def __sub__(self, other):
+        # EUCLIDEAN DISTANCE FUNCTION
         # Calculate the distance between this dot and other dot
         distance_squared = 0
         
@@ -21,4 +25,4 @@ class Dot:
         print(f"[{self.position[0]}", end="")
         for i in range(1, self.dimension):
             print(f", {self.position[i]}", end="")
-        print("]", end="")
+        print("]")
