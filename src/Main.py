@@ -27,8 +27,6 @@ class Main:
         while True:
             try:
                 dimension = int(input("Please input the number of dimension of the dot : "))
-                if (dimension < 3):
-                    raise ValueError
             except ValueError:
                 print("Please input an integer (>= 3)")
                 continue
