@@ -3,6 +3,7 @@
 
 import time
 from ListDot import *
+from IO import *
 
 class Main:
     @staticmethod
@@ -34,8 +35,26 @@ class Main:
             else:
                 return dimension
                 break
+    
+    def askForSaveToFile():
+        # Validate the user input of option to save the answer to file or not
+        while True:
+            try:
+                opt = input("Do you want to save your answer (Y/n): ").lower()
+                if (opt != "y" and opt != "n"):
+                    raise ValueError
+            except ValueError:
+                print("Please answer with yes (Y) or no (n)")
+                continue
+            else:
+                return opt
+                break
 
     def main():
+        # Initialize answer string and file name
+        answer = ""
+        name = ""
+
         # ============================== INPUT SEGMENT ==============================
         print("============================================================")
         print("------------ Welcome to the Closest Pair Finder ------------")
@@ -52,30 +71,50 @@ class Main:
         # =========================== CALCULATION SEGMENT ===========================
         # Generate the dots randomly
         dotList = ListDot(dimension, neff)         
-        dotList.generateRandom()
+
+        # Bruteforce
+        startTimeB = time.perf_counter()
+        dot1, dot2, minDist1, euclidCount = dotList.bruteForce(0, dotList.neff - 1)
+        endTimeB = time.perf_counter()
 
         # Divide and conquer
-        startTime = time.perf_counter()
-        dot1, dot2, minDist = dotList.divideAndConquer(0, dotList.neff - 1)
-        endTime = time.perf_counter()
+        startTimeD = time.perf_counter()
+        dot3, dot4, minDist2 = dotList.divideAndConquer(0, dotList.neff - 1)
+        endTimeD = time.perf_counter()
 
         # ============================= OUTPUT SEGMENT ==============================
         print("------------------------- Result ---------------------------")
-       
-        print()
-        print("First dot coordinate  : ", end="")
-        dot1.printDot()
-        print("Second dot coordinate : ", end="")
-        dot2.printDot()
-        print(f"Minimal distance      : {minDist}")
-        print()
 
-        print(f"Euclidean Distance function called {dotList.euclid_count} times")
-        print(f"Algorithm execution time : {endTime-startTime} seconds")
+        answer += "Result using Bruteforce Algorithm:"
+        answer += "\nFirst dot coordinate  : " + dot1.writeDot()
+        answer += "\nSecond dot coordinate : " + dot2.writeDot()
+        answer += f"\nMinimal distance      : {minDist1}"
+        answer += f"\nEuclidean Distance function called {euclidCount} times"
+        answer += f"\nAlgorithm execution time : {endTimeB-startTimeB} seconds"
+        
+        answer += "\n\nResult using Divide and Conquer Algorithm:"
+        answer += "\nFirst dot coordinate  : " + dot3.writeDot()
+        answer += "\nSecond dot coordinate : " + dot4.writeDot()
+        answer += f"\nMinimal distance      : {minDist2}"
+        answer += f"\nEuclidean Distance function called {dotList.euclid_count} times"
+        answer += f"\nAlgorithm execution time : {endTimeD-startTimeD} seconds"
+
+        print()
+        print(answer)
         print()
 
         print("------------------------------------------------------------")
         print("============================================================")
+        # ============================= SAVING SEGMENT ==============================
+        print("------------------------- Saving ---------------------------")
+
+        print()
+        opt = Main.askForSaveToFile()
+        if (opt == "y"):
+            name = input("Please input the name of the file: ")
+            IO.saveToFile(answer, name)
+
+        print("\nThank you for using Closest Pair Finder")
 
 
 if __name__ == "__main__":
