@@ -22,7 +22,7 @@ class Dot:
     
     def checkDimensionDistance(self, other, mindist) :
         check = True
-        for i in range(self.dimension) :
+        for i in range(1, self.dimension) :
             if (abs(other.position[i] - self.position[i]) >= mindist) :
                 check = False
                 break

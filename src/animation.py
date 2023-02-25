@@ -9,7 +9,7 @@ ax = fig.add_subplot(111, projection='3d')
 
 # Generate the dots randomly
 dotList = ListDot(3, 100) 
-dotList.generateRandom()
+# dotList.generateRandom()
 
 # Generate some 3D data
 # x = ax.set_xticks(dotList.)

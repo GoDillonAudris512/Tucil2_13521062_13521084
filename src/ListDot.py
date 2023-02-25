@@ -99,27 +99,27 @@ class ListDot:
             midX = self.buffer[locX].position[0]
 
             # Buat senarai semua titik yang ada di jarak minDist ke kiri dan minDist ke kanan
-            arrPoint = []
-            nArr = 0        # Panjang array
-            # for i in range (midX-minDist, midX+minDist+1) :
-            for dot in self.buffer :
-                if (abs(dot.position[0] - midX) <= minDist) :
-                    arrPoint.append(dot)
-                    nArr += 1
-
+            p = start
+            while abs(self.buffer[p].position[0] - midX) > minDist:
+                p += 1
+            left = p 
+            p += 1
+            while  p <= finish and abs(self.buffer[p].position[0] - midX) <= minDist:
+                p += 1
+            right = p-1
 
             # Compare the minDist between pair of dots across the midline and pair of dots from the same partition
             # TO DO for Austin
             # Cek titik dari atas ke bawah
             # arrPoint.sort() #berdasarkan sumbu y
-            for i in range (nArr-1) :
-                for j in range (i+1, nArr) :
-                    if (arrPoint[i].checkDimensionDistance(arrPoint[j], minDist)) :
-                        jarak = arrPoint[i]-arrPoint[j]
-                        self.euclid_count += 1;
+            for i in range (left, right) :
+                for j in range (i+1, right+1) :
+                    if (self.buffer[i].checkDimensionDistance(self.buffer[j], minDist)) :
+                        jarak = self.buffer[i]-self.buffer[j]
+                        self.euclid_count += 1
                         if jarak < minDist : 
                             minDist = jarak
-                            dot1, dot2 = arrPoint[i], arrPoint[j]
+                            dot1, dot2 = self.buffer[i], self.buffer[j]
         return dot1, dot2, minDist
     
     # =============================== HELPER SECTION =================================
