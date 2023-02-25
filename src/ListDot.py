@@ -1,4 +1,8 @@
 from Dot import * 
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
+from ListDot import * 
 
 class ListDot:
     # ============================== CONSTRUCTOR OF LIST ==============================
@@ -93,12 +97,11 @@ class ListDot:
                 dot1, dot2, minDist = dot5, dot6, minDistRight
 
             # Calculate the closest pair of dots across the midline with width current minDist
-            # TO DO for Austin
-            # Cari titik x garis tengah vertical
+            # Find x point where it is the middle point among all dots
             locX = (finish + start) // 2
             midX = self.buffer[locX].position[0]
 
-            # Buat senarai semua titik yang ada di jarak minDist ke kiri dan minDist ke kanan
+            # Make an array of all dots from mindist to left and minDist to right
             p = start
             while abs(self.buffer[p].position[0] - midX) > minDist:
                 p += 1
@@ -109,9 +112,6 @@ class ListDot:
             right = p-1
 
             # Compare the minDist between pair of dots across the midline and pair of dots from the same partition
-            # TO DO for Austin
-            # Cek titik dari atas ke bawah
-            # arrPoint.sort() #berdasarkan sumbu y
             for i in range (left, right) :
                 for j in range (i+1, right+1) :
                     if (self.buffer[i].checkDimensionDistance(self.buffer[j], minDist)) :
@@ -131,28 +131,26 @@ class ListDot:
 
     def plotFor3D(self, dot1, dot2):
         # Visualize the closest pair
-        # TO DO for Austin
-        pass
 
+        # Create a 3D plot
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection='3d')
 
+        # Generate some 3D data
+        for i in range(self.neff) :
+            ax.scatter(self.buffer[i].position[0], self.buffer[i].position[1], self.buffer[i].position[2], c='blue', marker='o')
 
-## =============================== TEMP TESTING =================================
-## Source code to test between brute force and divide and conquer
+        # Creating the title
+        ax.set_title("Pasangan Titik Terdekat 3D")
 
-# # Change the 100 to number of dots
-# t1 = ListDot(3, 100)         
+        # Plot the nearest dots using scatter plot
+        ax.scatter(dot1.position[0], dot1.position[1], dot1.position[2], c='red', marker='x')
+        ax.scatter(dot2.position[0], dot2.position[1], dot2.position[2], c='red', marker='x')
 
-# # Optional
-# t1.printAllDots()
+        # Set the labels name for the axes
+        ax.set_xlabel('Sumbu X')
+        ax.set_ylabel('Sumbu Y')
+        ax.set_zlabel('Sumbu Z')
 
-# # Calculation
-# dot1, dot2, minDist = t1.divideAndConquer(0, t1.neff - 1)
-# dot3, dot4, minDist2 = t1.bruteForce(0, t1.neff-1)
-# print("\nDivide and conquer result: ")
-# dot1.printDot()
-# dot2.printDot()
-# print(f"\nMinimal distance:{minDist}\n")
-# print("Bruteforce result: ")
-# dot3.printDot()
-# dot4.printDot()
-# print(f"\nMinimal distance:{minDist2}")
+        # Show the plot
+        plt.show()

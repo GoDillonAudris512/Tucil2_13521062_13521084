@@ -56,6 +56,16 @@ class Main:
         name = ""
 
         # ============================== INPUT SEGMENT ==============================
+        print('''
+
+ ____   ___ _____ ____    _____ ___ _   _ ____  _____ ____  
+|  _ \ / _ \_   _/ ___|  |  ___|_ _| \ | |  _ \| ____|  _ \ 
+| | | | | | || | \___ \  | |_   | ||  \| | | | |  _| | |_) |
+| |_| | |_| || |  ___) | |  _|  | || |\  | |_| | |___|  _ < 
+|____/ \___/ |_| |____/  |_|   |___|_| \_|____/|_____|_| \_\\
+                                                            
+
+        ''')
         print("============================================================")
         print("------------ Welcome to the Closest Pair Finder ------------")
 
@@ -103,6 +113,9 @@ class Main:
         print(answer)
         print()
 
+        if (dimension == 3) :
+            dotList.plotFor3D(dot1, dot2)
+
         print("------------------------------------------------------------")
         print("============================================================")
         # ============================= SAVING SEGMENT ==============================
@@ -115,6 +128,9 @@ class Main:
             IO.saveToFile(answer, name)
 
         print("\nThank you for using Closest Pair Finder")
+        print("\nProcessed with : ")
+        print("ASUS TUF GAMING F15")
+        print("11th Gen Intel(R) Core(TM) i9-11900H @ 2.50GHz")
 
 
 if __name__ == "__main__":
