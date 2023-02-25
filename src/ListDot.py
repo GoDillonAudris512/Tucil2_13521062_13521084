@@ -3,17 +3,48 @@ from Dot import *
 class ListDot:
     # ============================== CONSTRUCTOR OF LIST ==============================
     def __init__(self, dimension, neff):
-        # Initiate the number of dots, dimension of dot and the list of dots
+        # Initiate the number of dots, dimension of dot, list of dots, and number of euclid distance function called
         self.neff = neff
         self.dimension = dimension
-        self.buffer = []
         self.euclid_count = 0
-
-    def generateRandom(self):
-        # Fill the buffer with randomly generated dots and sort it by the x-coordinate
         self.buffer = [Dot(self.dimension) for i in range (self.neff)]
-        self.buffer.sort(key = lambda x: x.position[0])
 
+        # Sort the array according to x-coordinate with quicksort algorithm
+        self.quickSort(0, self.neff-1)
+
+    def quickSort(self, start, finish):
+        # Initialize the pointer
+        left = start
+        right = finish
+
+        # If the array contains more than 1 element, do the quicksort
+        if (start < finish):
+            i = self.partition(start, finish)
+            self.quickSort(start, i-1)
+            self.quickSort(i+1, finish)
+            
+    def partition(self, start, finish):
+        # Initialize the pointer and pivot
+        left = start
+        right = finish
+        pivotVal = self.buffer[(start+finish) // 2].position[0]
+
+        # Partition the array into left and right. End of partition, pivot in the correct place
+        while (left < right):
+            while (self.buffer[left].position[0] < pivotVal):
+                left += 1
+
+            while (self.buffer[right].position[0] > pivotVal):
+                right -= 1
+
+            self.buffer[left], self.buffer[right] = self.buffer[right], self.buffer[left]
+        
+        # Undo the last swap
+        self.buffer[left], self.buffer[right] = self.buffer[right], self.buffer[left]
+
+        # Return the pivot index
+        return right
+            
     # ================================== BRUTE FORCE ==================================
     def bruteForce(self, start, finish):
         # Initialize the value 
@@ -88,7 +119,6 @@ class ListDot:
 
 # # Change the 100 to number of dots
 # t1 = ListDot(3, 100)         
-# t1.generateRandom()
 
 # # Optional
 # t1.printAllDots()
