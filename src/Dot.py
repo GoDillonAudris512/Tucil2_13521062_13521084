@@ -8,7 +8,7 @@ class Dot:
     def __init__(self, dimension):
         # Initiate the number of dimension of dot and its position
         self.dimension = dimension
-        self.position = [random.randint(-1000, 1000) for i in range (dimension)]
+        self.position = [round(random.uniform(-10000, 10000), 3) for i in range (dimension)]
     
     def __sub__(self, other):
         # EUCLIDEAN DISTANCE FUNCTION
@@ -26,3 +26,11 @@ class Dot:
         for i in range(1, self.dimension):
             print(f", {self.position[i]}", end="")
         print("]")
+
+    def writeDot(self):
+        # Return string containing the dot coordinate information
+        coor = f"[{self.position[0]}"
+        for i in range(1, self.dimension):
+            coor += f", {self.position[i]}"
+        coor += "]"
+        return coor
