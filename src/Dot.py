@@ -20,6 +20,14 @@ class Dot:
 
         return math.sqrt(distance_squared)
     
+    def checkDimensionDistance(self, other, mindist) :
+        check = True
+        for i in range(self.dimension) :
+            if (abs(other.position[i] - self.position[i]) >= mindist) :
+                check = False
+                break
+        return check
+    
     def printDot(self):
         # Print the position of this dot
         print(f"[{self.position[0]}", end="")

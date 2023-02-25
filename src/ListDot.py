@@ -94,10 +94,32 @@ class ListDot:
 
             # Calculate the closest pair of dots across the midline with width current minDist
             # TO DO for Austin
+            # Cari titik x garis tengah vertical
+            locX = (finish + start) // 2
+            midX = self.buffer[locX].position[0]
+
+            # Buat senarai semua titik yang ada di jarak minDist ke kiri dan minDist ke kanan
+            arrPoint = []
+            nArr = 0        # Panjang array
+            # for i in range (midX-minDist, midX+minDist+1) :
+            for dot in self.buffer :
+                if (abs(dot.position[0] - midX) <= minDist) :
+                    arrPoint.append(dot)
+                    nArr += 1
+
 
             # Compare the minDist between pair of dots across the midline and pair of dots from the same partition
             # TO DO for Austin
-
+            # Cek titik dari atas ke bawah
+            # arrPoint.sort() #berdasarkan sumbu y
+            for i in range (nArr-1) :
+                for j in range (i+1, nArr) :
+                    if (arrPoint[i].checkDimensionDistance(arrPoint[j], minDist)) :
+                        jarak = arrPoint[i]-arrPoint[j]
+                        self.euclid_count += 1;
+                        if jarak < minDist : 
+                            minDist = jarak
+                            dot1, dot2 = arrPoint[i], arrPoint[j]
         return dot1, dot2, minDist
     
     # =============================== HELPER SECTION =================================
