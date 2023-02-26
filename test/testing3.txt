@@ -1,0 +1,13 @@
+Result using Bruteforce Algorithm:
+First dot coordinate  : [-7684.277, -2363.726, -3441.445, 4122.537, 9017.689]
+Second dot coordinate : [-3915.905, -5739.85, -643.989, 3696.416, 9109.224]
+Minimal distance      : 5797.80636349318
+Euclidean Distance function called 120 times
+Algorithm execution time : 0.0001584999999977299 seconds
+
+Result using Divide and Conquer Algorithm:
+First dot coordinate  : [-7684.277, -2363.726, -3441.445, 4122.537, 9017.689]
+Second dot coordinate : [-3915.905, -5739.85, -643.989, 3696.416, 9109.224]
+Minimal distance      : 5797.80636349318
+Euclidean Distance function called 27 times
+Algorithm execution time : 0.00016189999996640836 seconds

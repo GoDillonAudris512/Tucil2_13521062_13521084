@@ -47,6 +47,20 @@ class Main:
             else:
                 return opt
                 break
+    
+    def askForVisualizer():
+        # Validate the user input of option to visualize the answer in 3 Dimension
+        while True:
+            try:
+                ask = input("Do you want to see the visualizer (Y/n): ").lower()
+                if (ask != "y" and ask != "n"):
+                    raise ValueError
+            except ValueError:
+                print("Please answer with yes (Y) or no (n)")
+                continue
+            else:
+                return ask
+                break
 
     def main():
         # Initialize answer string and file name
@@ -112,7 +126,9 @@ class Main:
         print()
 
         if (dimension == 3) :
-            dotList.plotFor3D(dot1, dot2)
+            ask = Main.askForVisualizer()
+            if (ask == "y"): 
+                dotList.plotFor3D(dot1, dot2)
 
         print("------------------------------------------------------------")
         print("============================================================")
@@ -128,7 +144,7 @@ class Main:
         print("\nThank you for using Closest Pair Finder")
         print("\nProcessed with : ")
         print("ASUS TUF GAMING F15")
-        print("11th Gen Intel(R) Core(TM) i9-11900H @ 2.50GHz")
+        print("11th Gen Intel(R) Core(TM) i9-11900H @ 2.50GHz\n")
 
 
 if __name__ == "__main__":
