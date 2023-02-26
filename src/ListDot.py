@@ -1,6 +1,5 @@
 from Dot import * 
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 from ListDot import * 
 
@@ -52,7 +51,7 @@ class ListDot:
     # ================================== BRUTE FORCE ==================================
     def bruteForce(self, start, finish):
         # Initialize the value 
-        minDist = 999999
+        minDist = np.inf
         dot1 = Dot(self.dimension)
         dot2 = Dot(self.dimension)
         euclid_count = 0
@@ -78,7 +77,7 @@ class ListDot:
         dot2 = Dot(self.dimension)
 
         # Process the list depending on its size
-        if (finish-start+1 <= 4):
+        if (finish-start+1 <= 3):
             # Find the closest pair of dots using bruteforce
             dot1, dot2, minDist, count = self.bruteForce(start, finish)
             self.euclid_count += count
