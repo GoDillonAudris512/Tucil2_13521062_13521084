@@ -129,15 +129,14 @@ class ListDot:
             print()
 
     def plotFor3D(self, dot1, dot2):
-        # Visualize the closest pair
-
         # Create a 3D plot
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
 
         # Generate some 3D data
         for i in range(self.neff) :
-            ax.scatter(self.buffer[i].position[0], self.buffer[i].position[1], self.buffer[i].position[2], c='blue', marker='o')
+            if (self.buffer[i] != dot1 and self.buffer[i] != dot2) :
+                ax.scatter(self.buffer[i].position[0], self.buffer[i].position[1], self.buffer[i].position[2], c='blue', marker='o')
 
         # Creating the title
         ax.set_title("Pasangan Titik Terdekat 3D")

@@ -32,7 +32,7 @@ Author:
 - Penyimpanan solusi yang didapat dalam file text.
 
 ## Repository Structure
-bash
+```bash
 .
 │   README.md
 │  
@@ -49,6 +49,7 @@ bash
        testing.txt
        testing2.txt
        testing3.txt
+```
 
 ## Setup
 Pastikan anda telah menginstall bahasa python.
