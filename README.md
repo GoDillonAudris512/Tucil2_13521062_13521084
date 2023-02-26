@@ -19,8 +19,8 @@ Algoritma Divide and Conquer untuk penyelesaiannya, dan perbandingannya dengan A
 Repository ini dibuat dan mengandung file yang dibutuhkan untuk menyelesaikan Tugas Kecil 2 IF2211 Strategi Algoritma.
 
 Author: 
-13521062 Go Dillon Audris
-13521084 Austin Gabriel Pardosi
+- 13521062 Go Dillon Audris
+- 13521084 Austin Gabriel Pardosi
 
 ## Languange Used
 - Python Languange (100%)
@@ -57,7 +57,7 @@ Pastikan anda telah menginstall bahasa python.
 ## How to Compile and Run
 Setelah setup berhasil dilakukan, ikuti langkah dibawah untuk menjalankan program:
 1. Buka folder src.
-2. Masukkan command 'python main.py'
+2. Masukkan command 'python Main.py'
 
 Setelah program dijalankan, maka anda dapat memasukkan total titik yang ingin diletakkan secara random dan total dimensinya. Setelah dimasukkan atau digenerate, maka program akan secara otomatis memberikan sepasang titik terdekat. Jika dimensinya sama dengan 3 maka pengguna dapat menampilkan visualisasi atau tidak menampilkan visualisasi. Pengguna lalu dapat menyimpan solusi yang diberikan atau tidak menyimpannya.
 
